@@ -6,31 +6,178 @@
   <title>我的个人介绍页</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+      margin: 0;
+      min-height: 100vh;
     }
 
     .profile {
       background: #fff;
-      padding: 30px;
-      margin: 50px auto;
-      width: 350px;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      padding: 40px 30px 30px 30px;
+      margin: 60px auto;
+      max-width: 380px;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(60, 120, 180, 0.15);
       text-align: center;
+      position: relative;
+      transition: box-shadow 0.3s;
+    }
+
+    .profile:hover {
+      box-shadow: 0 12px 40px rgba(60, 120, 180, 0.22);
     }
 
     .avatar {
-      width: 100px;
-      height: 100px;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
-      margin-bottom: 15px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      border: 3px solid #e0eafc;
+      object-fit: cover;
+    }
+
+    h2 {
+      margin: 0 0 10px 0;
+      font-size: 2rem;
+      color: #2d5c8a;
+      letter-spacing: 2px;
+    }
+
+    .contact {
+      margin: 12px 0 18px 0;
     }
 
     .contact a {
       color: #007bff;
-      margin: 0 5px;
+      margin: 0 8px;
       text-decoration: none;
+      font-size: 1.1em;
+      transition: color 0.2s;
+    }
+
+    .contact a:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+
+    .social-icons {
+      margin: 10px 0 18px 0;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      margin: 0 6px;
+      transition: transform 0.2s;
+    }
+
+    .social-icons a:hover {
+      transform: scale(1.2);
+    }
+
+    .social-icons img {
+      width: 28px;
+      height: 28px;
+      vertical-align: middle;
+      border-radius: 6px;
+    }
+
+    .skills {
+      margin: 18px 0;
+      text-align: left;
+    }
+
+    .skills-title {
+      font-weight: bold;
+      color: #2d5c8a;
+      margin-bottom: 6px;
+      font-size: 1.1em;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill {
+      background: #e0eafc;
+      color: #2d5c8a;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.95em;
+      box-shadow: 0 1px 4px rgba(60, 120, 180, 0.07);
+    }
+
+    .interests {
+      margin: 18px 0;
+      text-align: left;
+    }
+
+    .interests-title {
+      font-weight: bold;
+      color: #2d5c8a;
+      margin-bottom: 6px;
+      font-size: 1.1em;
+    }
+
+    .interest-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .interest {
+      background: #f7f7f7;
+      color: #4a6fa5;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.95em;
+      box-shadow: 0 1px 4px rgba(60, 120, 180, 0.05);
+    }
+
+    #moreBtn {
+      background: linear-gradient(90deg, #6fb1fc 0%, #4364f7 100%);
+      color: #fff;
+      border: none;
+      border-radius: 22px;
+      padding: 8px 24px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 12px;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(60, 120, 180, 0.08);
+    }
+
+    #moreBtn:hover {
+      background: linear-gradient(90deg, #4364f7 0%, #6fb1fc 100%);
+      box-shadow: 0 4px 16px rgba(60, 120, 180, 0.13);
+    }
+
+    #moreInfo {
+      display: none;
+      color: #555;
+      margin-top: 12px;
+      font-size: 1.05em;
+      line-height: 1.7;
+      background: #f7f7f7;
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 1px 6px rgba(60, 120, 180, 0.07);
+    }
+
+    @media (max-width: 480px) {
+      .profile {
+        max-width: 98vw;
+        padding: 18px 6vw;
+        margin: 18px auto;
+      }
+
+      .avatar {
+        width: 80px;
+        height: 80px;
+      }
     }
   </style>
 </head>
@@ -44,17 +191,45 @@
       <a href="mailto:1517500532@qq.com">邮箱</a>|
       <a href="https://github.com/hcj-art" target="_blank">GitHub</a>
     </div>
-    <br>
+    <div class="social-icons">
+      <a href="https://github.com/hcj-art" target="_blank" title="GitHub">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub">
+      </a>
+      <a href="mailto:1517500532@qq.com" title="邮箱">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="邮箱">
+      </a>
+      <!-- 可添加更多社交图标 -->
+    </div>
+    <div class="skills">
+      <div class="skills-title">技能：</div>
+      <div class="skill-list">
+        <span class="skill">HTML</span>
+        <span class="skill">CSS</span>
+        <span class="skill">JavaScript</span>
+        <span class="skill">VS Code</span>
+        <span class="skill">Git</span>
+      </div>
+    </div>
+    <div class="interests">
+      <div class="interests-title">兴趣：</div>
+      <div class="interest-list">
+        <span class="interest">写代码</span>
+        <span class="interest">听音乐</span>
+        <span class="interest">旅游</span>
+        <span class="interest">打游戏</span>
+      </div>
+    </div>
     <button id="moreBtn">更多介绍</button>
-    <p id="moreInfo" style="display:none; color: #555;">
-      我的兴趣有：写代码、听音乐、旅游以及打游戏。欢迎联系我交流学习经验~
+    <p id="moreInfo">
+      我的兴趣有：写代码、听音乐、旅游以及打游戏。欢迎联系我交流学习经验~<br>
+      目前正在努力提升前端技能，喜欢尝试新技术和工具。希望未来能参与更多有趣的项目，结识志同道合的朋友！
     </p>
   </div>
   <script>
     // 基本 JS 交互
     document.getElementById('moreBtn').onclick = function () {
       const info = document.getElementById('moreInfo');
-      if (info.style.display === 'none') {
+      if (info.style.display === 'none' || info.style.display === '') {
         info.style.display = 'block';
         this.textContent = '收起介绍';
       } else {

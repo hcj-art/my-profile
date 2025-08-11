@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>我的个人介绍页</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+    }
+
+    .profile {
+      background: #fff;
+      padding: 30px;
+      margin: 50px auto;
+      width: 350px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+
+    .contact a {
+      color: #007bff;
+      margin: 0 5px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="profile">
+    <img class="avatar" src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="头像">
+    <h2>何程佳</h2>
+    <p>自我介绍：一名热爱前端开发的小白，目前正在学习HTML、CSS、JavaScript，目标是做出酷炫的网页！</p>
+    <div class="contact">
+      <a href="mailto:1517500532@qq.com">邮箱</a>|
+      <a href="https://github.com/hcj-art" target="_blank">GitHub</a>
+    </div>
+    <br>
+    <button id="moreBtn">更多介绍</button>
+    <p id="moreInfo" style="display:none; color: #555;">
+      我的兴趣有：写代码、听音乐、旅游以及打游戏。欢迎联系我交流学习经验~
+    </p>
+  </div>
+  <script>
+    // 基本 JS 交互
+    document.getElementById('moreBtn').onclick = function () {
+      const info = document.getElementById('moreInfo');
+      if (info.style.display === 'none') {
+        info.style.display = 'block';
+        this.textContent = '收起介绍';
+      } else {
+        info.style.display = 'none';
+        this.textContent = '更多介绍';
+      }
+    };
+  </script>
+</body>
+
+</html>

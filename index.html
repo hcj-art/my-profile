@@ -155,6 +155,29 @@
       box-shadow: 0 4px 16px rgba(60, 120, 180, 0.13);
     }
 
+    #showVueBtn {
+      background: linear-gradient(90deg, #6fb1fc 0%, #4364f7 100%);
+      color: #fff;
+      border: none;
+      border-radius: 22px;
+      padding: 8px 24px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 12px;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(60, 120, 180, 0.08);
+    }
+
+    /* 把按钮放在同一个块元素里面，后续代码添加依旧可以自动调节间距 */
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      /* 按钮间距，可调整 */
+      gap: 24px;
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+
     #moreInfo {
       display: none;
       color: #555;
@@ -183,6 +206,7 @@
 </head>
 
 <body>
+  <!-- 这里是分支测试 -->
   <div class="profile">
     <img class="avatar" src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="头像">
     <h2>何程佳</h2>
@@ -219,7 +243,11 @@
         <span class="interest">打游戏</span>
       </div>
     </div>
-    <button id="moreBtn">更多介绍</button>
+
+    <div class="btn-group">
+      <button id="moreBtn">更多介绍</button>
+      <button id="showVueBtn">展示Vue项目</button>
+    </div>
     <p id="moreInfo">
       我的兴趣有：写代码、听音乐、旅游以及打游戏。欢迎联系我交流学习经验~<br>
       目前正在努力提升前端技能，喜欢尝试新技术和工具。希望未来能参与更多有趣的项目，结识志同道合的朋友！
@@ -237,6 +265,13 @@
         this.textContent = '更多介绍';
       }
     };
+
+    // Vue.js 交互，跳转界面
+    document.getElementById('showVueBtn').onclick = function () {
+      // window.location.href = 'vue-json.html'; 这是直接切换到另一个页面，不会打开新的窗口展示
+      window.open('vue-json.html', '_blank');
+    };
+
   </script>
 </body>
 

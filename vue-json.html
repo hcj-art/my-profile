@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Vue 最小示例：JSON 解析与读取</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Arial', sans-serif;
+      max-width: 720px;
+      margin: 32px auto;
+      padding: 0 16px;
+      background: #f6f8fa;
+      color: #222;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.2em;
+      margin-bottom: 18px;
+      letter-spacing: 2px;
+      color: #2979ff;
+    }
+
+    #app {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
+      padding: 32px 24px 24px 24px;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+      justify-content: center;
+    }
+
+    button {
+      background: #2979ff;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 18px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(44, 62, 80, 0.06);
+    }
+
+    button:hover {
+      background: #1565c0;
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      font-size: 1em;
+      border-radius: 6px;
+      border: 1px solid #d0d7de;
+      margin-bottom: 16px;
+      padding: 10px;
+      background: #f3f6fa;
+      resize: vertical;
+      box-sizing: border-box;
+      transition: border 0.2s;
+    }
+
+    textarea:focus {
+      border-color: #2979ff;
+      outline: none;
+    }
+
+    pre {
+      background: #0d1117;
+      color: #e6edf3;
+      padding: 16px;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      font-size: 1em;
+      margin-top: 0;
+      box-shadow: 0 2px 8px rgba(44, 62, 80, 0.06);
+    }
+
+    .tips {
+      color: #888;
+      font-size: 0.98em;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <h1>Vue：JSON 解析与读取</h1>
+    <div class="tips">
+      支持本地/远程 JSON 生成、解析与存储，用来前端练习与调试。
+    </div>
+    <div class="btn-group">
+      <button @click="make">生成示例 JSON</button>
+      <button @click="parse">解析 JSON</button>
+      <button @click="save">保存到本地</button>
+      <button @click="load">读取本地并解析</button>
+      <button @click="fetchRemote">远程读取并解析</button>
+    </div>
+    <textarea v-model="jsonText" placeholder='例如：{"name":"Ada","age":18}'></textarea>
+    <pre>{{ prettyResult }}</pre>
+  </div>
+
+  <script>
+    const { createApp, ref, computed } = Vue;
+
+    createApp({
+      setup() {
+        const jsonText = ref('');
+        const result = ref(null);
+        const message = ref('');
+
+        const prettyResult = computed(() => {
+          const parts = [];
+          if (message.value) parts.push(message.value);
+          if (result.value !== null) parts.push(JSON.stringify(result.value, null, 2));
+          return parts.join('\n');
+        });
+
+        const make = () => {
+          const obj = { name: "Ada", age: 18, likes: ["Vue", "猫"], ok: true, note: null };
+          jsonText.value = JSON.stringify(obj, null, 2);
+          result.value = null;
+          message.value = "已生成示例 JSON 到文本框";
+        };
+
+        const parse = () => {
+          try {
+            result.value = JSON.parse(jsonText.value);
+            message.value = "解析成功";
+          } catch (e) {
+            result.value = null;
+            message.value = "解析失败：" + e.message;
+          }
+        };
+        const save = () => {
+          localStorage.setItem("vue-demo-json", jsonText.value || "");
+          message.value = "已保存到 localStorage（键：vue-demo-json）";
+        };
+
+        const load = () => {
+          const s = localStorage.getItem("vue-demo-json") || "";
+          jsonText.value = s;
+          if (!s) {
+            result.value = null;
+            message.value = "本地没有保存内容";
+            return;
+          }
+          parse();
+        };
+
+        const fetchRemote = async () => {
+          try {
+            message.value = "从远程读取中…";
+            const res = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+            const obj = await res.json();
+            jsonText.value = JSON.stringify(obj, null, 2);
+            result.value = obj;
+            message.value = "远程读取并解析成功";
+          } catch (e) {
+            result.value = null;
+            message.value = "远程读取失败：" + e.message;
+          }
+        };
+
+        return { jsonText, prettyResult, make, parse, save, load, fetchRemote };
+      }
+    }).mount("#app");
+  </script>

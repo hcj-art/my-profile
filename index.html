@@ -138,13 +138,15 @@
     }
 
     #moreBtn {
+      /* 线性渐变：90deg 表示渐变方向向右（0deg 向上、180deg 向下） 起始颜色，结束颜色 */
       background: linear-gradient(90deg, #6fb1fc 0%, #4364f7 100%);
       color: #fff;
       border: none;
       border-radius: 22px;
-      padding: 8px 24px;
       font-size: 1em;
       cursor: pointer;
+      /* padding（内边距）：上下、左右   margin：外边距 */
+      padding: 8px 24px;
       margin-top: 12px;
       transition: background 0.2s, box-shadow 0.2s;
       box-shadow: 0 2px 8px rgba(60, 120, 180, 0.08);

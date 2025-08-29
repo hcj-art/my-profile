@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS常用属性参考表</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .category-btn {
+      padding: 10px 20px;
+      background-color: #fff;
+      border: 2px solid #2575fc;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .category-btn:hover {
+      background-color: #2575fc;
+      color: white;
+    }
+
+    .category-btn.active {
+      background-color: #2575fc;
+      color: white;
+    }
+
+    .search-box {
+      padding: 10px 15px;
+      width: 100%;
+      max-width: 400px;
+      border: 2px solid #ddd;
+      border-radius: 30px;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      background-color: white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th,
+    td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #eaeaea;
+    }
+
+    th {
+      background-color: #2575fc;
+      color: white;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+    }
+
+    tr:hover {
+      background-color: #f9f9f9;
+    }
+
+    .property {
+      font-weight: 600;
+      color: #2575fc;
+    }
+
+    .values {
+      color: #e64072;
+    }
+
+    .category {
+      display: none;
+    }
+
+    .category.active {
+      display: table;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #777;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+
+      th,
+      td {
+        padding: 10px;
+      }
+
+      .property,
+      .values {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>CSS常用属性参考表</h1>
+    <p class="description">全面的CSS属性列表，包含说明和示例值。使用下面的按钮按类别筛选或搜索特定属性。</p>
+  </header>
+
+  <div class="controls">
+    <input type="text" class="search-box" placeholder="搜索属性..." id="searchInput">
+  </div>
+
+  <div class="controls">
+    <button class="category-btn active" data-category="all">所有属性</button>
+    <button class="category-btn" data-category="layout">布局</button>
+    <button class="category-btn" data-category="typography">文本与字体</button>
+    <button class="category-btn" data-category="background">背景</button>
+    <button class="category-btn" data-category="box-model">盒模型</button>
+    <button class="category-btn" data-category="effects">效果与动画</button>
+  </div>
+
+  <div class="category-table">
+    <!-- 布局属性 -->
+    <table id="layout" class="category">
+      <thead>
+        <tr>
+          <th width="20%">属性</th>
+          <th width="40%">说明</th>
+          <th width="40%">示例值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="property">display</td>
+          <td>定义元素的显示类型</td>
+          <td class="values">block, inline, inline-block, flex, grid, none</td>
+        </tr>
+        <tr>
+          <td class="property">position</td>
+          <td>指定元素的定位方式</td>
+          <td class="values">static, relative, absolute, fixed, sticky</td>
+        </tr>
+        <tr>
+          <td class="property">float</td>
+          <td>指定元素浮动方向</td>
+          <td class="values">left, right, none</td>
+        </tr>
+        <tr>
+          <td class="property">clear</td>
+          <td>指定元素哪一侧不允许其他浮动元素</td>
+          <td class="values">left, right, both, none</td>
+        </tr>
+        <tr>
+          <td class="property">flex-direction</td>
+          <td>指定Flex容器主轴的方向</td>
+          <td class="values">row, row-reverse, column, column-reverse</td>
+        </tr>
+        <tr>
+          <td class="property">justify-content</td>
+          <td>定义Flex项目在主轴上的对齐方式</td>
+          <td class="values">flex-start, flex-end, center, space-between, space-around</td>
+        </tr>
+        <tr>
+          <td class="property">align-items</td>
+          <td>定义Flex项目在交叉轴上的对齐方式</td>
+          <td class="values">stretch, flex-start, flex-end, center, baseline</td>
+        </tr>
+        <tr>
+          <td class="property">grid-template-columns</td>
+          <td>定义Grid布局的列</td>
+          <td class="values">100px 1fr 2fr, repeat(3, 1fr), minmax(100px, 1fr)</td>
+        </tr>
+        <tr>
+          <td class="property">grid-template-rows</td>
+          <td>定义Grid布局的行</td>
+          <td class="values">100px 200px, repeat(2, 1fr), auto</td>
+        </tr>
+        <tr>
+          <td class="property">grid-gap</td>
+          <td>定义Grid布局中行和列之间的间隙</td>
+          <td class="values">10px, 1rem, 5%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 文本与字体属性 -->
+    <table id="typography" class="category">
+      <thead>
+        <tr>
+          <th width="20%">属性</th>
+          <th width="40%">说明</th>
+          <th width="40%">示例值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="property">color</td>
+          <td>设置文本颜色</td>
+          <td class="values">#ff0000, rgb(255,0,0), red</td>
+        </tr>
+        <tr>
+          <td class="property">font-family</td>
+          <td>指定文本的字体系列</td>
+          <td class="values">Arial, "Helvetica Neue", sans-serif</td>
+        </tr>
+        <tr>
+          <td class="property">font-size</td>
+          <td>设置文本大小</td>
+          <td class="values">16px, 1rem, 120%</td>
+        </tr>
+        <tr>
+          <td class="property">font-weight</td>
+          <td>设置文本粗细</td>
+          <td class="values">normal, bold, 700</td>
+        </tr>
+        <tr>
+          <td class="property">text-align</td>
+          <td>设置文本水平对齐方式</td>
+          <td class="values">left, right, center, justify</td>
+        </tr>
+        <tr>
+          <td class="property">line-height</td>
+          <td>设置行高</td>
+          <td class="values">1.5, 24px, normal</td>
+        </tr>
+        <tr>
+          <td class="property">text-decoration</td>
+          <td>设置文本装饰</td>
+          <td class="values">none, underline, overline, line-through</td>
+        </tr>
+        <tr>
+          <td class="property">text-transform</td>
+          <td>控制文本的大小写</td>
+          <td class="values">none, capitalize, uppercase, lowercase</td>
+        </tr>
+        <tr>
+          <td class="property">letter-spacing</td>
+          <td>设置字符间距</td>
+          <td class="values">normal, 2px, 0.1em</td>
+        </tr>
+        <tr>
+          <td class="property">word-spacing</td>
+          <td>设置单词间距</td>
+          <td class="values">normal, 5px, 0.2em</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 背景属性 -->
+    <table id="background" class="category">
+      <thead>
+        <tr>
+          <th width="20%">属性</th>
+          <th width="40%">说明</th>
+          <th width="40%">示例值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="property">background-color</td>
+          <td>设置元素背景颜色</td>
+          <td class="values">#ffffff, rgba(0,0,0,0.5), transparent</td>
+        </tr>
+        <tr>
+          <td class="property">background-image</td>
+          <td>设置元素背景图像</td>
+          <td class="values">url("image.jpg"), linear-gradient(red, yellow)</td>
+        </tr>
+        <tr>
+          <td class="property">background-repeat</td>
+          <td>设置背景图像是否及如何重复</td>
+          <td class="values">repeat, repeat-x, repeat-y, no-repeat</td>
+        </tr>
+        <tr>
+          <td class="property">background-position</td>
+          <td>设置背景图像的起始位置</td>
+          <td class="values">left top, center center, 50% 50%</td>
+        </tr>
+        <tr>
+          <td class="property">background-size</td>
+          <td>设置背景图片大小</td>
+          <td class="values">cover, contain, 100% 100%, 50px 80px</td>
+        </tr>
+        <tr>
+          <td class="property">background-attachment</td>
+          <td>设置背景图像是否固定或者随着页面滚动</td>
+          <td class="values">scroll, fixed, local</td>
+        </tr>
+        <tr>
+          <td class="property">background</td>
+          <td>所有背景属性的简写</td>
+          <td class="values">#fff url("image.jpg") no-repeat center</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 盒模型属性 -->
+    <table id="box-model" class="category">
+      <thead>
+        <tr>
+          <th width="20%">属性</th>
+          <th width="40%">说明</th>
+          <th width="40%">示例值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="property">width</td>
+          <td>设置元素的宽度</td>
+          <td class="values">100px, 50%, auto</td>
+        </tr>
+        <tr>
+          <td class="property">height</td>
+          <td>设置元素的高度</td>
+          <td class="values">200px, 100%, auto</td>
+        </tr>
+        <tr>
+          <td class="property">margin</td>
+          <td>设置元素的外边距</td>
+          <td class="values">10px, 5px 10px, 5px 10px 15px 20px</td>
+        </tr>
+        <tr>
+          <td class="property">padding</td>
+          <td>设置元素的内边距</td>
+          <td class="values">10px, 5px 10px, 5px 10px 15px 20px</td>
+        </tr>
+        <tr>
+          <td class="property">border</td>
+          <td>设置元素的边框</td>
+          <td class="values">1px solid #000, 2px dashed red</td>
+        </tr>
+        <tr>
+          <td class="property">border-radius</td>
+          <td>设置元素边框的圆角</td>
+          <td class="values">5px, 50%, 10px 5px 15px 20px</td>
+        </tr>
+        <tr>
+          <td class="property">box-shadow</td>
+          <td>设置元素阴影效果</td>
+          <td class="values">2px 2px 5px #888, inset 0 0 10px #000</td>
+        </tr>
+        <tr>
+          <td class="property">box-sizing</td>
+          <td>定义如何计算元素的宽度和高度</td>
+          <td class="values">content-box, border-box</td>
+        </tr>
+        <tr>
+          <td class="property">overflow</td>
+          <td>定义内容溢出元素框时的处理方式</td>
+          <td class="values">visible, hidden, scroll, auto</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 效果与动画属性 -->
+    <table id="effects" class="category">
+      <thead>
+        <tr>
+          <th width="20%">属性</th>
+          <th width="40%">说明</th>
+          <th width="40%">示例值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="property">opacity</td>
+          <td>设置元素的不透明度</td>
+          <td class="values">0.5, 1, 0</td>
+        </tr>
+        <tr>
+          <td class="property">visibility</td>
+          <td>设置元素是否可见</td>
+          <td class="values">visible, hidden, collapse</td>
+        </tr>
+        <tr>
+          <td class="property">transition</td>
+          <td>设置元素过渡效果</td>
+          <td class="values">all 0.3s ease, opacity 1s linear</td>
+        </tr>
+        <tr>
+          <td class="property">transform</td>
+          <td>对元素进行旋转、缩放、移动或倾斜</td>
+          <td class="values">rotate(45deg), scale(1.2), translate(10px, 20px)</td>
+        </tr>
+        <tr>
+          <td class="property">animation</td>
+          <td>设置元素动画效果</td>
+          <td class="values">fadeIn 2s ease infinite</td>
+        </tr>
+        <tr>
+          <td class="property">cursor</td>
+          <td>设置鼠标指针在元素上的样式</td>
+          <td class="values">pointer, default, help, move</td>
+        </tr>
+        <tr>
+          <td class="property">z-index</td>
+          <td>设置元素的堆叠顺序</td>
+          <td class="values">10, -1, auto</td>
+        </tr>
+        <tr>
+          <td class="property">filter</td>
+          <td>定义元素的可视效果（如模糊、饱和度等）</td>
+          <td class="values">blur(5px), grayscale(100%), brightness(150%)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 所有属性表格（默认显示） -->
+    <table id="all" class="category active">
+      <thead>
+        <tr>
+          <th width="20%">属性</th>
+          <th width="40%">说明</th>
+          <th width="40%">示例值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 这里合并了上面所有表格的内容 -->
+        <!-- 布局 -->
+        <tr>
+          <td class="property">display</td>
+          <td>定义元素的显示类型</td>
+          <td class="values">block, inline, inline-block, flex, grid, none</td>
+        </tr>
+        <tr>
+          <td class="property">position</td>
+          <td>指定元素的定位方式</td>
+          <td class="values">static, relative, absolute, fixed, sticky</td>
+        </tr>
+        <!-- 文本与字体 -->
+        <tr>
+          <td class="property">color</td>
+          <td>设置文本颜色</td>
+          <td class="values">#ff0000, rgb(255,0,0), red</td>
+        </tr>
+        <tr>
+          <td class="property">font-family</td>
+          <td>指定文本的字体系列</td>
+          <td class="values">Arial, "Helvetica Neue", sans-serif</td>
+        </tr>
+        <!-- 背景 -->
+        <tr>
+          <td class="property">background-color</td>
+          <td>设置元素背景颜色</td>
+          <td class="values">#ffffff, rgba(0,0,0,0.5), transparent</td>
+        </tr>
+        <tr>
+          <td class="property">background-image</td>
+          <td>设置元素背景图像</td>
+          <td class="values">url("image.jpg"), linear-gradient(red, yellow)</td>
+        </tr>
+        <!-- 盒模型 -->
+        <tr>
+          <td class="property">width</td>
+          <td>设置元素的宽度</td>
+          <td class="values">100px, 50%, auto</td>
+        </tr>
+        <tr>
+          <td class="property">height</td>
+          <td>设置元素的高度</td>
+          <td class="values">200px, 100%, auto</td>
+        </tr>
+        <!-- 效果与动画 -->
+        <tr>
+          <td class="property">opacity</td>
+          <td>设置元素的不透明度</td>
+          <td class="values">0.5, 1, 0</td>
+        </tr>
+        <tr>
+          <td class="property">transition</td>
+          <td>设置元素过渡效果</td>
+          <td class="values">all 0.3s ease, opacity 1s linear</td>
+        </tr>
+        <!-- 更多属性... -->
+        <tr>
+          <td class="property">float</td>
+          <td>指定元素浮动方向</td>
+          <td class="values">left, right, none</td>
+        </tr>
+        <tr>
+          <td class="property">font-size</td>
+          <td>设置文本大小</td>
+          <td class="values">16px, 1rem, 120%</td>
+        </tr>
+        <tr>
+          <td class="property">margin</td>
+          <td>设置元素的外边距</td>
+          <td class="values">10px, 5px 10px, 5px 10px 15px 20px</td>
+        </tr>
+        <tr>
+          <td class="property">padding</td>
+          <td>设置元素的内边距</td>
+          <td class="values">10px, 5px 10px, 5px 10px 15px 20px</td>
+        </tr>
+        <tr>
+          <td class="property">text-align</td>
+          <td>设置文本水平对齐方式</td>
+          <td class="values">left, right, center, justify</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    <p>CSS属性参考表 &copy; 2023 | 包含最常用的CSS属性及其用法</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const categoryButtons = document.querySelectorAll('.category-btn');
+      const categories = document.querySelectorAll('.category');
+      const searchInput = document.getElementById('searchInput');
+
+      // 类别筛选功能
+      categoryButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          const category = this.getAttribute('data-category');
+
+          // 更新按钮状态
+          categoryButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+
+          // 显示选中的类别
+          categories.forEach(cat => {
+            cat.classList.remove('active');
+            if (cat.id === category) {
+              cat.classList.add('active');
+            }
+          });
+        });
+      });
+
+      // 搜索功能
+      searchInput.addEventListener('input', function () {
+        const searchTerm = this.value.toLowerCase();
+
+        categories.forEach(table => {
+          const rows = table.querySelectorAll('tbody tr');
+          let hasVisibleRows = false;
+
+          rows.forEach(row => {
+            const property = row.querySelector('.property').textContent.toLowerCase();
+            const description = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+            const values = row.querySelector('.values').textContent.toLowerCase();
+
+            if (property.includes(searchTerm) ||
+              description.includes(searchTerm) ||
+              values.includes(searchTerm)) {
+              row.style.display = '';
+              hasVisibleRows = true;
+            } else {
+              row.style.display = 'none';
+            }
+          });
+
+          // 如果表格没有可见行，隐藏整个表格
+          if (!hasVisibleRows && table.id !== 'all') {
+            table.style.display = 'none';
+          } else {
+            table.style.display = 'table';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

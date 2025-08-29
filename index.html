@@ -157,7 +157,8 @@
       box-shadow: 0 4px 16px rgba(60, 120, 180, 0.13);
     }
 
-    #showVueBtn {
+    #showVueBtn,
+    #showCssBtn {
       background: linear-gradient(90deg, #6fb1fc 0%, #4364f7 100%);
       color: #fff;
       border: none;
@@ -249,6 +250,8 @@
     <div class="btn-group">
       <button id="moreBtn">更多介绍</button>
       <button id="showVueBtn">展示Vue项目</button>
+      <button id="showCssBtn">CSS属性查找</button>
+
     </div>
     <p id="moreInfo">
       我的兴趣有：写代码、听音乐、旅游以及打游戏。欢迎联系我交流学习经验~<br>
@@ -273,6 +276,10 @@
       // window.location.href = 'vue-json.html'; 这是直接切换到另一个页面，不会打开新的窗口展示
       window.open('vue-json.html', '_blank');
     };
+
+    document.getElementById('showCssBtn').onclick = function () {
+      window.open('CSS属性查找.html', '_blank');
+    }
 
   </script>
 </body>

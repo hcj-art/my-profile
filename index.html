@@ -13,29 +13,62 @@
     }
 
     .profile {
-      background: #fff;
-      padding: 40px 30px 30px 30px;
+      /* background: rgba(255, 255, 255, 0.28); */
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(220, 235, 255, 0.18) 100%);
+      padding: 42px 30px 32px 30px;
       margin: 60px auto;
-      max-width: 380px;
-      border-radius: 16px;
-      box-shadow: 0 8px 32px rgba(60, 120, 180, 0.15);
+      max-width: 410px;
+      border-radius: 28px;
+      box-shadow: 0 8px 40px 0 rgba(60, 120, 180, 0.18);
       text-align: center;
       position: relative;
-      transition: box-shadow 0.3s;
+      transition: box-shadow 0.3s, background 0.3s;
+      backdrop-filter: blur(12px) saturate(1.2);
+      border: 1.5px solid rgba(120, 180, 255, 0.13);
     }
 
     .profile:hover {
-      box-shadow: 0 12px 40px rgba(60, 120, 180, 0.22);
+      box-shadow: 0 16px 56px 0 rgba(60, 120, 180, 0.28);
+      background: rgba(255, 255, 255, 0.38);
     }
 
     .avatar {
-      width: 110px;
-      height: 110px;
+      width: 112px;
+      height: 112px;
       border-radius: 50%;
       margin-bottom: 18px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-      border: 3px solid #e0eafc;
+      box-shadow: 0 2px 18px 0 rgba(60, 120, 180, 0.13), 0 0 0 5px rgba(111, 177, 252, 0.18);
+      border: 3px solid transparent;
+      background: linear-gradient(135deg, #6fb1fc 0%, #4364f7 100%);
+      padding: 3px;
       object-fit: cover;
+      transition: box-shadow 0.3s;
+    }
+
+    .avatar:hover {
+      box-shadow: 0 4px 32px 0 rgba(67, 100, 247, 0.18), 0 0 0 7px #6fb1fc55;
+    }
+
+    .skill {
+      background: linear-gradient(90deg, #e0eafc 0%, #cfdef3 100%);
+      color: #2d5c8a;
+      padding: 5px 14px;
+      border-radius: 14px;
+      font-size: 0.97em;
+      box-shadow: 0 1px 6px rgba(60, 120, 180, 0.09);
+      font-weight: 500;
+      letter-spacing: 1px;
+      border: 1px solid #e0eafc;
+    }
+
+    .interest {
+      background: linear-gradient(90deg, #f7f7f7 0%, #e0eafc 100%);
+      color: #4a6fa5;
+      padding: 5px 14px;
+      border-radius: 14px;
+      font-size: 0.97em;
+      box-shadow: 0 1px 6px rgba(60, 120, 180, 0.06);
+      border: 1px solid #e0eafc;
     }
 
     h2 {
@@ -101,15 +134,6 @@
       gap: 8px;
     }
 
-    .skill {
-      background: #e0eafc;
-      color: #2d5c8a;
-      padding: 4px 12px;
-      border-radius: 12px;
-      font-size: 0.95em;
-      box-shadow: 0 1px 4px rgba(60, 120, 180, 0.07);
-    }
-
     .interests {
       margin: 18px 0;
       text-align: left;
@@ -126,15 +150,6 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-    }
-
-    .interest {
-      background: #f7f7f7;
-      color: #4a6fa5;
-      padding: 4px 12px;
-      border-radius: 12px;
-      font-size: 0.95em;
-      box-shadow: 0 1px 4px rgba(60, 120, 180, 0.05);
     }
 
     #moreBtn {
@@ -157,18 +172,23 @@
       box-shadow: 0 4px 16px rgba(60, 120, 180, 0.13);
     }
 
+    .btn-group button,
+    #moreBtn,
     #showVueBtn,
-    #showCssBtn {
+    #showCssBtn,
+    #showGameBtn {
       background: linear-gradient(90deg, #6fb1fc 0%, #4364f7 100%);
       color: #fff;
       border: none;
       border-radius: 22px;
-      padding: 8px 24px;
+      padding: 9px 26px;
       font-size: 1em;
       cursor: pointer;
       margin-top: 12px;
-      transition: background 0.2s, box-shadow 0.2s;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.18s;
       box-shadow: 0 2px 8px rgba(60, 120, 180, 0.08);
+      font-weight: 500;
+      letter-spacing: 1px;
     }
 
     /* 把按钮放在同一个块元素里面，后续代码添加依旧可以自动调节间距 */
@@ -179,6 +199,16 @@
       gap: 24px;
       margin-top: 16px;
       margin-bottom: 8px;
+    }
+
+    .btn-group button:hover,
+    #moreBtn:hover,
+    #showVueBtn:hover,
+    #showCssBtn:hover,
+    #showGameBtn:hover {
+      background: linear-gradient(90deg, #4364f7 0%, #6fb1fc 100%);
+      box-shadow: 0 4px 18px rgba(60, 120, 180, 0.18);
+      transform: translateY(-2px) scale(1.05);
     }
 
     #moreInfo {
@@ -196,13 +226,23 @@
     @media (max-width: 480px) {
       .profile {
         max-width: 98vw;
-        padding: 18px 6vw;
+        padding: 18px 4vw;
         margin: 18px auto;
+        border-radius: 18px;
       }
 
       .avatar {
         width: 80px;
         height: 80px;
+        padding: 2px;
+      }
+    }
+
+    /* 兼容性处理 */
+    @supports ((-webkit-backdrop-filter: blur(12px)) or (backdrop-filter: blur(12px))) {
+      .profile {
+        -webkit-backdrop-filter: blur(12px) saturate(1.2);
+        backdrop-filter: blur(12px) saturate(1.2);
       }
     }
   </style>
@@ -251,6 +291,7 @@
       <button id="moreBtn">更多介绍</button>
       <button id="showVueBtn">展示Vue项目</button>
       <button id="showCssBtn">CSS属性查找</button>
+      <button id="showGameBtn">贪吃蛇游戏</button>
 
     </div>
     <p id="moreInfo">
@@ -279,6 +320,10 @@
 
     document.getElementById('showCssBtn').onclick = function () {
       window.open('CSS属性查找.html', '_blank');
+    }
+
+    document.getElementById('showGameBtn').onclick = function () {
+      window.open('贪吃蛇-极简.html', '_blank');
     }
 
   </script>
